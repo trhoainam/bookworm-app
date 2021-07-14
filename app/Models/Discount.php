@@ -15,4 +15,15 @@ class Discount extends Model
     {
         return $this->belongsTo(Book::class);
     }
+    public function scopeValidDate($query)
+    {
+        return $query->where(function($query){
+           $query->whereDate('discount_start_date', '<=', now())
+                        ->whereDate('discount_end_date','>=',now());
+        })
+        ->orWhere(function ($query) {
+         $query->whereDate('discount_start_date', '<=', now())
+                ->WhereNull('discount_end_date');
+        });
+    }
 }
