@@ -13,7 +13,10 @@ class Review extends Model
     public $timestamps = false;
 
     public function scopeAverageStar($query){
-        return $query->select(DB::raw('avg(CAST (rating_start AS INTEGER)) as star'));
+        return $query->select(DB::raw('case when(avg(CAST (reviews.rating_start AS INTEGER))isnull) 
+        then 0 
+        else avg(CAST (reviews.rating_start AS INTEGER)) end 
+        as star'));
     }
     public function scopeCountComment($query){
         return $query->select(DB::raw('count(reviews.book_id) as comment_count'));
