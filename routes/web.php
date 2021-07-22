@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 //Lấy file ảnh trong resources
 Route::get('/resources/assets/bookcover/{filename}', function($filename){
     $path = resource_path() . '/assets/bookcover/' . $filename;
@@ -33,7 +35,7 @@ Route::get('/resources/assets/bookcover/{filename}', function($filename){
     return $response;
 });
 //Trang tĩnh
-Route::get('/home', function () {
+/*Route::get('/home', function () {
     return view('home');
 });
 Route::get('/about', function () {
@@ -47,4 +49,9 @@ Route::get('/cart', function () {
 });
 Route::get('/product', function () {
     return view('product');
-});
+});*/
+//Single Page App
+Route::view('/product/{path?}', 'index');
+Route::get('/{path?}', function () {
+    return view('index');
+})->where('path', '.*');
