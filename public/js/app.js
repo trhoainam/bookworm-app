@@ -2887,7 +2887,7 @@ var dialogCloseButtonStyles = {
   padding: '3px 8px',
   cursor: 'pointer',
   borderRadius: '50%',
-  border: 'none',
+  border: 'double',
   width: '30px',
   height: '30px',
   fontWeight: 'bold',
@@ -3815,7 +3815,6 @@ function ReviewView(props) {
   }, []);
 
   var reviewsRender = function reviewsRender() {
-    console.log("reviews: ", reviews);
     var res = [];
     reviews[0] ? reviews[0].review_title ? reviews.map(function (item, index) {
       res.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -4589,10 +4588,20 @@ function Cart(props) {
       isOpen = _useState2[0],
       setIsOpen = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(props.cartItems),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
-      cartItems = _useState4[0],
-      setCartItems = _useState4[1];
+      isOpenWhenFailed = _useState4[0],
+      setIsOpenWhenFailed = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isOpenWhenEmpty = _useState6[0],
+      setIsOpenWhenEmpty = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(props.cartItems),
+      _useState8 = _slicedToArray(_useState7, 2),
+      cartItems = _useState8[0],
+      setCartItems = _useState8[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var cart = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
@@ -4655,13 +4664,22 @@ function Cart(props) {
               };
               _context.next = 5;
               return axios.post("http://127.0.0.1:8000/api/place-order", params).then(function (ketqua) {
-                setCartItems([]);
-                setIsOpen(true);
-                window.setTimeout(function () {
-                  window.location = "/";
-                }, 10000);
-              })["catch"](function (err) {
-                alert(err);
+                if (ketqua.status == 200) {
+                  setCartItems([]);
+                  setIsOpen(true);
+                  window.setTimeout(function () {
+                    window.location = "/";
+                  }, 10000);
+                }
+              })["catch"](function (error) {
+                if (error.response.status == 403) {
+                  removeItem(error.response.data.notExistBooks);
+                  setIsOpenWhenFailed(true);
+                }
+
+                if (error.response.status == 400) {
+                  setIsOpenWhenEmpty(true);
+                }
               });
 
             case 5:
@@ -4679,6 +4697,27 @@ function Cart(props) {
       return _ref.apply(this, arguments);
     };
   }();
+
+  var removeItem = function removeItem(notExistBooks) {
+    var tmpCart = cartItems;
+    var arr = [];
+    tmpCart.map(function (x, i) {
+      notExistBooks.forEach(function (item) {
+        if (x.id === item) {
+          arr.push(i);
+        }
+      });
+    });
+
+    if (arr.length > 0) {
+      arr.forEach(function (item) {
+        tmpCart.splice(item, 1);
+      });
+      setCartItems(tmpCart.map(function (x) {
+        return x;
+      }));
+    }
+  };
 
   var onPlaceOrder = function onPlaceOrder() {
     placeOrder();
@@ -4729,6 +4768,18 @@ function Cart(props) {
           window.location = "/";
         },
         children: "\u0110\u1EB7t H\xE0ng Th\xE0nh C\xF4ng !!!"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Dialog_Dialog__WEBPACK_IMPORTED_MODULE_5__.default, {
+        isOpen: isOpenWhenFailed,
+        onClose: function onClose(e) {
+          setIsOpenWhenFailed(false);
+        },
+        children: "M\u1ED9t s\u1ED1 m\xF3n h\xE0ng kh\xF4ng c\xF2n t\u1ED3n t\u1EA1i !!!"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Dialog_Dialog__WEBPACK_IMPORTED_MODULE_5__.default, {
+        isOpen: isOpenWhenEmpty,
+        onClose: function onClose(e) {
+          setIsOpenWhenEmpty(false);
+        },
+        children: "Vui l\xF2ng ch\u1ECDn s\xE1ch v\xE0o gi\u1ECF h\xE0ng !!!"
       })]
     })
   });
@@ -5098,13 +5149,17 @@ function Product(props) {
             case 0:
               _context.next = 2;
               return axios.get("http://127.0.0.1:8000/api/books/".concat(id)).then(function (ketqua) {
-                setBookInfo(ketqua.data);
+                if (ketqua.status != 200) {
+                  window.location = "/error";
+                } else {
+                  setBookInfo(ketqua.data);
 
-                if (ketqua.data[0].book_cover_photo) {
-                  setUrl("http://127.0.0.1:8000/resources/assets/bookcover/" + ketqua.data[0].book_cover_photo + ".jpg");
+                  if (ketqua.data[0].book_cover_photo) {
+                    setUrl("http://127.0.0.1:8000/resources/assets/bookcover/" + ketqua.data[0].book_cover_photo + ".jpg");
+                  }
                 }
               })["catch"](function (err) {
-                alert(err);
+                window.location = "/error";
               });
 
             case 2:

@@ -41,7 +41,6 @@ export default function ReviewView(props) {
         fetchData();
     }, [])
     const reviewsRender=()=>{
-        console.log("reviews: ",reviews)
         let res=[];
         reviews[0]?reviews[0].review_title?
         reviews.map((item,index)=>{

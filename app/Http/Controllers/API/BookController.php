@@ -4,9 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Book;
 use App\Http\Controllers\Controller;
-use App\Models\Discount;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
@@ -53,6 +52,7 @@ class BookController extends Controller
     }
     public function getBookById($id)
     {
+        try{
         $book = Book::where('books.id', $id)
             ->select('books.*')
             ->with('author')
@@ -61,6 +61,12 @@ class BookController extends Controller
             ->selectFinalPrice()
             ->get();
         return response()->json($book);
+        }
+        catch(Exception $e){
+            return response()->json([
+                'message'=>"Sách không tồn tại" 
+            ],403);
+        }
     }
     
     public function getBooksByFilter(Request $request)

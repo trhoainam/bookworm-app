@@ -17,13 +17,17 @@ export default function Product(props) {
     const getBookInfo = async (event) => {
         const res = await axios.get(`http://127.0.0.1:8000/api/books/${id}`)
             .then((ketqua) => {
-                setBookInfo(ketqua.data);
-                if (ketqua.data[0].book_cover_photo) {
-                    setUrl(`http://127.0.0.1:8000/resources/assets/bookcover/` + ketqua.data[0].book_cover_photo + `.jpg`)
+                if (ketqua.status != 200) {
+                    window.location = "/error";
+                } else {
+                    setBookInfo(ketqua.data);
+                    if (ketqua.data[0].book_cover_photo) {
+                        setUrl(`http://127.0.0.1:8000/resources/assets/bookcover/` + ketqua.data[0].book_cover_photo + `.jpg`)
+                    }
                 }
             })
             .catch((err) => {
-                alert(err);
+                window.location = "/error";
             });
     }
     useEffect(() => {
@@ -44,7 +48,7 @@ export default function Product(props) {
             console.log('update lại item cũ')
             setCartItems(
                 cartItems.map((x) => {
-                    return x = (x.id === product.id ? { ...product, qty: (x.qty + number)>8?8:(x.qty + number), url: url } : x);
+                    return x = (x.id === product.id ? { ...product, qty: (x.qty + number) > 8 ? 8 : (x.qty + number), url: url } : x);
                 }))
         } else {
             console.log('item mới');
@@ -73,8 +77,8 @@ export default function Product(props) {
             <div className="review-content">
                 <div className="row">
                     <div className="col-sm-8 ">
-                        <div className="read-review" style={{position:'relative'}}>
-                            <ReviewView id={id}/>
+                        <div className="read-review" style={{ position: 'relative' }}>
+                            <ReviewView id={id} />
                         </div>
                     </div>
                     <div className="col-sm-4">
