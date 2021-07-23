@@ -33,7 +33,7 @@ export default function Pagination(props) {
     }
     return (
         <>
-            <div className="pagination-div">
+            <div className="pagination-div" style={props.style}>
                 <nav aria-label="...">
                     <ul className="pagination">
                         {props.otherData.links?paginationRender(props.otherData):'không'}

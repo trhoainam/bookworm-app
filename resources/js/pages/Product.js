@@ -73,8 +73,8 @@ export default function Product(props) {
             <div className="review-content">
                 <div className="row">
                     <div className="col-sm-8 ">
-                        <div className="read-review">
-                            <ReviewView />
+                        <div className="read-review" style={{position:'relative'}}>
+                            <ReviewView id={id}/>
                         </div>
                     </div>
                     <div className="col-sm-4">

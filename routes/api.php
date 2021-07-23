@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BookController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\AuthorController;
 use App\Http\Controllers\API\CartController;
+use App\Http\Controllers\API\ReviewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,5 +33,6 @@ Route::get('categories',[CategoryController::class,'listCategory']);
 Route::get('authors',[AuthorController::class,'listAuthor']);
 //Cart
 Route::post('place-order',[CartController::class,'placeOrder']);
-
+//Review
+Route::get('reviews/{id}',[ReviewController::class,'getReview']);
 

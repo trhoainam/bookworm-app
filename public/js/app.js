@@ -3380,6 +3380,7 @@ function Pagination(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "pagination-div",
+      style: props.style,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("nav", {
         "aria-label": "...",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
@@ -3685,84 +3686,356 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ReviewView)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Pagination/Pagination */ "./resources/js/components/Pagination/Pagination.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-function ReviewView() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
+
+
+
+function ReviewView(props) {
+  var _jsxs2, _jsxs3, _jsxs4, _jsxs5, _jsxs6, _jsxs7;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    filterBy: "total",
+    filterValue: '1',
+    filterName: 'Total'
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      filter = _useState2[0],
+      setFilter = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    sortBy: "new",
+    sortName: "newest to oldest"
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      sort = _useState4[0],
+      setSort = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(20),
+      _useState6 = _slicedToArray(_useState5, 2),
+      per = _useState6[0],
+      setPer = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1),
+      _useState8 = _slicedToArray(_useState7, 2),
+      page = _useState8[0],
+      setPage = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      header = _useState10[0],
+      setHeader = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      reviews = _useState12[0],
+      setReviews = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState14 = _slicedToArray(_useState13, 2),
+      otherData = _useState14[0],
+      setOtherData = _useState14[1];
+
+  var fetchData = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(event) {
+      var params, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              params = {
+                params: {
+                  per: per,
+                  page: page,
+                  sort: sort.sortBy,
+                  filter_by: filter.filterBy,
+                  filter_value: filter.filterValue
+                }
+              };
+              _context.next = 3;
+              return axios.get("http://127.0.0.1:8000/api/reviews/".concat(props.id), params).then(function (ketqua) {
+                setReviews(ketqua.data.reviews.data);
+                setHeader(ketqua.data.header);
+                setOtherData(ketqua.data.reviews);
+              })["catch"](function (err) {
+                alert(err);
+              });
+
+            case 3:
+              res = _context.sent;
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function fetchData(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var onChangePage = function onChangePage(page) {
+    setPage(page);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    fetchData();
+  }, [filter, sort, per, page]);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    fetchData();
+  }, []);
+
+  var reviewsRender = function reviewsRender() {
+    console.log("reviews: ", reviews);
+    var res = [];
+    reviews[0] ? reviews[0].review_title ? reviews.map(function (item, index) {
+      res.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+          style: {
+            display: 'inline-block'
+          },
+          children: item.review_title
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+          children: ["|", item.rating_start, " Star"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: item.review_details
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: item.review_date
+        })]
+      }, index));
+    }) : [] : [];
+    return res;
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
         children: "Customer Reviews"
-      }), " (Filtered by ...)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: "x.y Star"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: "(total)  5 star (a) | 4 star (b) | 3 star (c) | 2 star (d) | 1 star (e)"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      }), " (Filtered by ", filter.filterName, ")", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h2", {
+        children: [header[0] ? parseFloat(header[0].avg_star).toFixed(2) : 0, " Star"]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        style: {
+          display: "inline",
+          overflowWrap: "anywhere"
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs2 = {
+          className: "dropdown-item",
+          style: {
+            cursor: "pointer"
+          }
+        }, _defineProperty(_jsxs2, "style", {
+          display: "inline"
+        }), _defineProperty(_jsxs2, "onClick", function onClick(e) {
+          setFilter({
+            filterBy: "total",
+            filterValue: '1',
+            filterName: 'Total'
+          });
+        }), _defineProperty(_jsxs2, "children", ["Total (", header[0] ? header[0].total : 0, ")"]), _jsxs2)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs3 = {
+          className: "dropdown-item",
+          style: {
+            cursor: "pointer"
+          }
+        }, _defineProperty(_jsxs3, "style", {
+          display: "inline"
+        }), _defineProperty(_jsxs3, "onClick", function onClick(e) {
+          setFilter({
+            filterBy: "reviews.rating_start",
+            filterValue: '5',
+            filterName: '5 Star'
+          });
+        }), _defineProperty(_jsxs3, "children", ["5 star (", header[0] ? header[0].star5 : 0, ")"]), _jsxs3)), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs4 = {
+          className: "dropdown-item",
+          style: {
+            cursor: "pointer"
+          }
+        }, _defineProperty(_jsxs4, "style", {
+          display: "inline"
+        }), _defineProperty(_jsxs4, "onClick", function onClick(e) {
+          setFilter({
+            filterBy: "reviews.rating_start",
+            filterValue: '4',
+            filterName: '4 Star'
+          });
+        }), _defineProperty(_jsxs4, "children", ["4 star (", header[0] ? header[0].star4 : 0, ")"]), _jsxs4)), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs5 = {
+          className: "dropdown-item",
+          style: {
+            cursor: "pointer"
+          }
+        }, _defineProperty(_jsxs5, "style", {
+          display: "inline"
+        }), _defineProperty(_jsxs5, "onClick", function onClick(e) {
+          setFilter({
+            filterBy: "reviews.rating_start",
+            filterValue: '3',
+            filterName: '3 Star'
+          });
+        }), _defineProperty(_jsxs5, "children", ["3 star (", header[0] ? header[0].star3 : 0, ")"]), _jsxs5)), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs6 = {
+          className: "dropdown-item",
+          style: {
+            cursor: "pointer"
+          }
+        }, _defineProperty(_jsxs6, "style", {
+          display: "inline"
+        }), _defineProperty(_jsxs6, "onClick", function onClick(e) {
+          setFilter({
+            filterBy: "reviews.rating_start",
+            filterValue: '2',
+            filterName: '2 Star'
+          });
+        }), _defineProperty(_jsxs6, "children", ["2 star (", header[0] ? header[0].star2 : 0, ")"]), _jsxs6)), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs7 = {
+          className: "dropdown-item",
+          style: {
+            cursor: "pointer"
+          }
+        }, _defineProperty(_jsxs7, "style", {
+          display: "inline"
+        }), _defineProperty(_jsxs7, "onClick", function onClick(e) {
+          setFilter({
+            filterBy: "reviews.rating_start",
+            filterValue: '1',
+            filterName: '1 Star'
+          });
+        }), _defineProperty(_jsxs7, "children", ["1 star (", header[0] ? header[0].star1 : 0, ")"]), _jsxs7))]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "col-sm-6",
-          children: "Showing  reviews"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: ["Showing ", otherData.from, "-", otherData.to, " of ", otherData.total, " reviews"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "col-sm-6",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "dropdown d-inline-block",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
               className: "btn btn-secondary dropdown-toggle",
               type: "button",
               id: "dropdownMenuButton",
               "data-toggle": "dropdown",
               "aria-haspopup": "true",
               "aria-expanded": "false",
-              children: "Sort By Date"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              children: ["Sort By Date: ", sort.sortName]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "dropdown-menu",
               "aria-labelledby": "dropdownMenuButton",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "dropdown-item",
-                href: "#",
+                style: {
+                  cursor: "pointer"
+                },
+                onClick: function onClick() {
+                  setSort({
+                    sortBy: "new",
+                    sortName: "newest to oldest"
+                  });
+                },
                 children: "Sort By Date: newest to oldest"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "dropdown-item",
-                href: "#",
-                children: "Sort By Date: oldest to newest "
+                style: {
+                  cursor: "pointer"
+                },
+                onClick: function onClick() {
+                  setSort({
+                    sortBy: "old",
+                    sortName: "oldest to newest"
+                  });
+                },
+                children: "Sort By Date: oldest to newest"
               })]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "dropdown d-inline-block",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
               className: "btn btn-secondary dropdown-toggle",
               type: "button",
               id: "dropdownMenuButton",
               "data-toggle": "dropdown",
               "aria-haspopup": "true",
               "aria-expanded": "false",
-              children: "Showing :"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              children: ["Showing: ", per]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "dropdown-menu",
               "aria-labelledby": "dropdownMenuButton",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "dropdown-item",
-                href: "#",
+                style: {
+                  cursor: "pointer"
+                },
+                onClick: function onClick() {
+                  setPer(5);
+                },
                 children: "5"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "dropdown-item",
-                href: "#",
-                children: "10 "
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                style: {
+                  cursor: "pointer"
+                },
+                onClick: function onClick() {
+                  setPer(10);
+                },
+                children: "10"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "dropdown-item",
-                href: "#",
-                children: "20 "
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                style: {
+                  cursor: "pointer"
+                },
+                onClick: function onClick() {
+                  setPer(20);
+                },
+                children: "20"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "dropdown-item",
-                href: "#",
-                children: "25 "
+                style: {
+                  cursor: "pointer"
+                },
+                onClick: function onClick() {
+                  setPer(25);
+                },
+                children: "25"
               })]
             })]
           })]
         })]
+      }), reviewsRender(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        style: {
+          marginTop: "10px"
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__.default, {
+        otherData: otherData,
+        onChangePage: onChangePage,
+        style: {
+          margin: "50px",
+          bottom: "0"
+        }
       })]
     })
   });
@@ -4925,7 +5198,12 @@ function Product(props) {
           className: "col-sm-8 ",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             className: "read-review",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Review_ReviewView__WEBPACK_IMPORTED_MODULE_5__.default, {})
+            style: {
+              position: 'relative'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Review_ReviewView__WEBPACK_IMPORTED_MODULE_5__.default, {
+              id: id
+            })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "col-sm-4",
