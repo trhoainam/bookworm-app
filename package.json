@@ -27,15 +27,16 @@
     },
     "dependencies": {
         "history": "^5.0.0",
-        "react-router-dom": "^6.0.0-beta.0"
+        "react-router-dom": "^6.0.0-beta.0",
+        "react-toastify": "^7.0.4"
     },
     "babel": {
-        "presets": [ 
+        "presets": [
             "@babel/preset-env",
             "@babel/preset-react"
-         ],
-        "plugins": [ 
+        ],
+        "plugins": [
             "@babel/plugin-proposal-class-properties"
-         ]
-      }
+        ]
+    }
 }

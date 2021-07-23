@@ -34,6 +34,9 @@ export default function ReviewView(props) {
     const onChangePage = (page) => {
         setPage(page);
     }
+    useEffect(()=>{
+        fetchData();
+    },[props.reRender])
     useEffect(() => {
         fetchData();
     }, [filter, sort, per, page])
@@ -46,7 +49,7 @@ export default function ReviewView(props) {
         reviews.map((item,index)=>{
             res.push(<div key={index}>
                 <hr />
-                <h2 style={{display: 'inline-block'}}>{item.review_title}</h2><span>|{item.rating_start} Star</span>
+                <h2 style={{display: 'inline-block',overflowWrap:'anywhere'}}>{item.review_title}</h2><span>|{item.rating_start} Star</span>
                 <p>{item.review_details}</p>
                 <p>{item.review_date}</p>
               </div>)

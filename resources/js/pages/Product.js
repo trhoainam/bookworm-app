@@ -7,12 +7,17 @@ import ProductDetail from './../components/Product/ProductDetail';
 import ProductTotal from './../components/Product/ProductTotal';
 import ReviewForm from './../components/Review/ReviewForm';
 import ReviewView from './../components/Review/ReviewView';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 export default function Product(props) {
     let { id } = useParams();
     const [cartItems, setCartItems] = useState([]);
     const [bookInfo, setBookInfo] = useState();
     const [url, setUrl] = useState("http://127.0.0.1:8000/resources/assets/bookcover/book1.jpg");
+    const [reRender,setReRender] = useState(false);
 
     const getBookInfo = async (event) => {
         const res = await axios.get(`http://127.0.0.1:8000/api/books/${id}`)
@@ -54,8 +59,11 @@ export default function Product(props) {
             console.log('item mới');
             setCartItems([...cartItems, { ...product, qty: number, url: url }]);
         }
+        toast(`Đã thêm vào giỏ hàng : quyển ${product.book_title} `,{position: toast.POSITION.TOP_RIGHT,autoClose:5000});
     }
-
+    const handleSubmit=()=>{
+        setReRender(!reRender);
+    }
     return (
         <>
             <div className="product-header mt-4" style={{ display: "flex" }}>
@@ -78,12 +86,12 @@ export default function Product(props) {
                 <div className="row">
                     <div className="col-sm-8 ">
                         <div className="read-review" style={{ position: 'relative' }}>
-                            <ReviewView id={id} />
+                            <ReviewView id={id} reRender={reRender}/>
                         </div>
                     </div>
                     <div className="col-sm-4">
                         <div className="write-review">
-                            <ReviewForm />
+                            <ReviewForm id={id} handleSubmit={handleSubmit}/>
                         </div>
                     </div>
                 </div>

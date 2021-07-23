@@ -35,4 +35,5 @@ Route::get('authors',[AuthorController::class,'listAuthor']);
 Route::post('place-order',[CartController::class,'placeOrder']);
 //Review
 Route::get('reviews/{id}',[ReviewController::class,'getReview']);
+Route::post('reviews/{id}',[ReviewController::class,'postReview']);
 

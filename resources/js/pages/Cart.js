@@ -4,7 +4,10 @@ import CartDetailContent from '../components/Cart/CartDetailContent';
 import CartDetailHeader from '../components/Cart/CartDetailHeader';
 import CartTotal from '../components/Cart/CartTotal';
 import Dialog from '../components/Dialog/Dialog';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 
 export default function Cart(props) {
     const [isOpen, setIsOpen] = useState(false);
@@ -59,6 +62,7 @@ export default function Cart(props) {
                     window.setTimeout(function () {
                         window.location = "/";
                     }, 10000);
+                    toast(`Sẽ tự động chuyển trang sau 10 giây`,{position: toast.POSITION.TOP_RIGHT,autoClose:10000});
                 }
             })
             .catch((error) => {

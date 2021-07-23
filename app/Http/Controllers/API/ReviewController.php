@@ -41,17 +41,31 @@ class ReviewController extends Controller
         switch ($sort) {
             case "old":
                 $reviewsCollection = $reviewsCollection
-                    ->orderByDesc('reviews.review_date');
+                    ->orderBy('reviews.review_date');
                 break;
 
             default:
                 $reviewsCollection = $reviewsCollection
-                    ->orderBy('reviews.review_date');
+                    ->orderByDesc('reviews.review_date');
         }
         $reviewsCollection = $reviewsCollection->paginate($per);
         $header = array('header' => $headerCollection->toArray());
-        $reviews=array('reviews'=>$reviewsCollection->toArray());
-        $result=array_merge($header,$reviews);
+        $reviews = array('reviews' => $reviewsCollection->toArray());
+        $result = array_merge($header, $reviews);
         return response()->json($result);
+    }
+    public function postReview($id, Request $request)
+    {
+        $title = $request->get('review_title') ? $request->get('review_title') : 'Title';
+        $content = $request->get('review_details') ? $request->get('review_details') : 'Content';
+        $star = $request->get('rating_start') ? $request->get('rating_start') : '1';
+        $review = Review::create([
+            'book_id' => $id,
+            'review_title' => $title,
+            'review_details' => $content,
+            'review_date' => now(),
+            'rating_start' => $star
+        ]);
+        return response()->json($review,200);
     }
 }
