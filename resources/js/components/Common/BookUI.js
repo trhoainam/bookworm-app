@@ -26,16 +26,6 @@ export default class BookUI extends Component {
         }
       }
   }
-  renderPrice() {
-    let book = this.props.book;
-    let res = [];
-    if (book.book_price != book.final_price) {
-      res.push(<>{book.book_price} $ {book.final_price} $ </>)
-    } else {
-      res.push(<>{book.book_price} $</>)
-    }
-    return res;
-  }
   render() {
     let price;
     if (this.props.book) {

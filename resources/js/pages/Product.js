@@ -50,13 +50,11 @@ export default function Product(props) {
     const onAdd = (product, number) => {
         const exist = cartItems.find((x) => x.id === product.id);
         if (exist) {
-            console.log('update lại item cũ')
             setCartItems(
                 cartItems.map((x) => {
                     return x = (x.id === product.id ? { ...product, qty: (x.qty + number) > 8 ? 8 : (x.qty + number), url: url } : x);
                 }))
         } else {
-            console.log('item mới');
             setCartItems([...cartItems, { ...product, qty: number, url: url }]);
         }
         toast(`Đã thêm vào giỏ hàng : quyển ${product.book_title} `,{position: toast.POSITION.TOP_RIGHT,autoClose:5000});

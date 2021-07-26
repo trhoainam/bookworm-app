@@ -1,5 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 export default function ReviewForm(props) {
     const [reviewTitle, setReviewTitle] = useState("");
@@ -17,7 +21,6 @@ export default function ReviewForm(props) {
     }
     function onSubmit(event) {
         event.preventDefault();
-        console.log(reviewContent,reviewTitle,reviewRating);
         const params = {
             "review_title": reviewTitle,
             "review_details": reviewContent,
@@ -29,6 +32,7 @@ export default function ReviewForm(props) {
                 setReviewTitle("");
                 setReviewContent("");
                 setReviewRating('1')
+                toast(`Gửi đánh giá thành công !`,{position: toast.POSITION.TOP_RIGHT,autoClose:3000});
             })
             .catch((error) => {
             })

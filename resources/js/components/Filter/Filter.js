@@ -6,6 +6,7 @@ export default class Filter extends Component {
 
         categories.map((item, index) => {
             res.push(<div 
+                className="dropdown-item"
                 style={{cursor:"pointer"}} 
                 key={index} 
                 onClick={() =>{
@@ -23,7 +24,11 @@ export default class Filter extends Component {
         let res = [];
 
         authors.map((item, index) => {
-            res.push(<div style={{cursor:"pointer"}} key={index} onClick={() => {this.props.onChangeFilter("authors.id", item.id,item.author_name)}}><p>{item.author_name}</p></div>);
+            res.push(<div 
+                className="dropdown-item"
+                style={{cursor:"pointer"}}
+                key={index} 
+                onClick={() => {this.props.onChangeFilter("authors.id", item.id,item.author_name)}}><p>{item.author_name}</p></div>);
         })
 
         return res;
@@ -71,12 +76,11 @@ export default class Filter extends Component {
                         </div>
                         <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div className="card-body">
-                                <div style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 1,"1 Star")}}><p>1 Star</p></div>
-                                <div style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 2,"2 Star")}}><p>2 Star</p></div>
-                                <div style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 3,"3 Star")}}><p>3 Star</p></div>
-                                <div style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 4,"4 Star")}}><p>4 Star</p></div>
-                                <div style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 5,"5 Star")}}><p>5 Star</p></div>
-                                
+                                <div className="dropdown-item" style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 1,"1 Star")}}><p>1 Star</p></div>
+                                <div className="dropdown-item" style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 2,"2 Star")}}><p>2 Star</p></div>
+                                <div className="dropdown-item" style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 3,"3 Star")}}><p>3 Star</p></div>
+                                <div className="dropdown-item" style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 4,"4 Star")}}><p>4 Star</p></div>
+                                <div className="dropdown-item" style={{cursor:"pointer"}} onClick={() => {this.props.onChangeFilter("staravg", 5,"5 Star")}}><p>5 Star</p></div>                                
                             </div>
                         </div>
                     </div>

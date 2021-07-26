@@ -43,6 +43,14 @@ export default function ReviewView(props) {
     useEffect(() => {
         fetchData();
     }, [])
+    const localeDateString=(date)=>{
+        let d= new Date(date);
+        return d.toLocaleDateString(undefined, {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          });
+    }
     const reviewsRender=()=>{
         let res=[];
         reviews[0]?reviews[0].review_title?
@@ -51,7 +59,7 @@ export default function ReviewView(props) {
                 <hr />
                 <h2 style={{display: 'inline-block',overflowWrap:'anywhere'}}>{item.review_title}</h2><span>|{item.rating_start} Star</span>
                 <p>{item.review_details}</p>
-                <p>{item.review_date}</p>
+                <p>{localeDateString(item.review_date)}</p>
               </div>)
         }):[]:[];
         return res;
@@ -63,32 +71,32 @@ export default function ReviewView(props) {
                 <h2>{header[0]?parseFloat(header[0].avg_star).toFixed(2):0} Star</h2>
                 <div style={{display:"inline",overflowWrap:"anywhere"}}>
                     
-                    <div className="dropdown-item" style={{ cursor: "pointer" }} 
-                    style={{display:"inline"}}
+                    <div className="dropdown-item" style={{ cursor: "pointer",display: "inline" }} 
+                    
                     onClick={(e) => { setFilter({ filterBy: "total", filterValue: '1', filterName: 'Total' }) }}>
                     Total ({header[0]?header[0].total:0})</div>
-                    <div className="dropdown-item" style={{ cursor: "pointer" }} 
-                    style={{display:"inline"}}
+                    <div className="dropdown-item" style={{ cursor: "pointer",display: "inline" }} 
+                    
                     onClick={(e) => { setFilter({ filterBy: "reviews.rating_start", filterValue: '5', filterName: '5 Star' }) }}>
                     5 star ({header[0]?header[0].star5:0})</div>
                     |
-                    <div className="dropdown-item" style={{ cursor: "pointer" }} 
-                    style={{display:"inline"}}
+                    <div className="dropdown-item" style={{ cursor: "pointer",display: "inline" }} 
+                    
                     onClick={(e) => { setFilter({ filterBy: "reviews.rating_start", filterValue: '4', filterName: '4 Star' }) }}>
                     4 star ({header[0]?header[0].star4:0})</div>
                     |
-                    <div className="dropdown-item" style={{ cursor: "pointer" }} 
-                    style={{display:"inline"}}
+                    <div className="dropdown-item" style={{ cursor: "pointer",display: "inline" }} 
+                    
                     onClick={(e) => { setFilter({ filterBy: "reviews.rating_start", filterValue: '3', filterName: '3 Star' }) }}>
                     3 star ({header[0]?header[0].star3:0})</div>
                     |
-                    <div className="dropdown-item" style={{ cursor: "pointer" }} 
-                    style={{display:"inline"}}
+                    <div className="dropdown-item" style={{ cursor: "pointer",display: "inline" }} 
+                    
                     onClick={(e) => { setFilter({ filterBy: "reviews.rating_start", filterValue: '2', filterName: '2 Star' }) }}>
                     2 star ({header[0]?header[0].star2:0})</div>
                     |
-                    <div className="dropdown-item" style={{ cursor: "pointer" }} 
-                    style={{display:"inline"}}
+                    <div className="dropdown-item" style={{ cursor: "pointer",display: "inline" }} 
+                    
                     onClick={(e) => { setFilter({ filterBy: "reviews.rating_start", filterValue: '1', filterName: '1 Star' }) }}>
                     1 star ({header[0]?header[0].star1:0})</div>
                     </div>

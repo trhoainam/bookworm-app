@@ -2559,24 +2559,6 @@ var BookUI = /*#__PURE__*/function (_Component) {
       }
     }
   }, {
-    key: "renderPrice",
-    value: function renderPrice() {
-      var book = this.props.book;
-      var res = [];
-
-      if (book.book_price != book.final_price) {
-        res.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-          children: [book.book_price, " $ ", book.final_price, " $ "]
-        }));
-      } else {
-        res.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-          children: [book.book_price, " $"]
-        }));
-      }
-
-      return res;
-    }
-  }, {
     key: "render",
     value: function render() {
       var price;
@@ -2995,6 +2977,7 @@ var Filter = /*#__PURE__*/function (_Component) {
       var res = [];
       categories.map(function (item, index) {
         res.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "dropdown-item",
           style: {
             cursor: "pointer"
           },
@@ -3019,6 +3002,7 @@ var Filter = /*#__PURE__*/function (_Component) {
       var res = [];
       authors.map(function (item, index) {
         res.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "dropdown-item",
           style: {
             cursor: "pointer"
           },
@@ -3122,6 +3106,7 @@ var Filter = /*#__PURE__*/function (_Component) {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "card-body",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "dropdown-item",
                   style: {
                     cursor: "pointer"
                   },
@@ -3132,6 +3117,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                     children: "1 Star"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "dropdown-item",
                   style: {
                     cursor: "pointer"
                   },
@@ -3142,6 +3128,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                     children: "2 Star"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "dropdown-item",
                   style: {
                     cursor: "pointer"
                   },
@@ -3152,6 +3139,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                     children: "3 Star"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "dropdown-item",
                   style: {
                     cursor: "pointer"
                   },
@@ -3162,6 +3150,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                     children: "4 Star"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "dropdown-item",
                   style: {
                     cursor: "pointer"
                   },
@@ -3506,14 +3495,41 @@ function ProductTotal(props) {
     setCount(e.target.value);
   };
 
+  var renderPrice = function renderPrice() {
+    var book = props.bookInfo[0];
+    var price;
+
+    if (book) {
+      if (book.final_price != book.book_price) {
+        price = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("b", {
+            children: ["$", book.final_price]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("del", {
+            style: {
+              marginLeft: "5%",
+              color: "gray"
+            },
+            children: ["$", book.book_price]
+          })]
+        });
+      } else {
+        price = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("b", {
+            children: ["$", book.book_price]
+          })
+        });
+      }
+    }
+
+    return price;
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "product-total",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "product-total-header",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-          children: props.bookInfo ? '$' + props.bookInfo[0].final_price : ''
-        })
+        children: props.bookInfo ? renderPrice() : ''
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "product-total-content",
         style: {
@@ -3581,7 +3597,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ ReviewForm)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3599,6 +3617,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+react_toastify__WEBPACK_IMPORTED_MODULE_3__.toast.configure();
 function ReviewForm(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3629,7 +3650,6 @@ function ReviewForm(props) {
 
   function onSubmit(event) {
     event.preventDefault();
-    console.log(reviewContent, reviewTitle, reviewRating);
     var params = {
       "review_title": reviewTitle,
       "review_details": reviewContent,
@@ -3640,93 +3660,97 @@ function ReviewForm(props) {
       setReviewTitle("");
       setReviewContent("");
       setReviewRating('1');
+      (0,react_toastify__WEBPACK_IMPORTED_MODULE_3__.toast)("G\u1EEDi \u0111\xE1nh gi\xE1 th\xE0nh c\xF4ng !", {
+        position: react_toastify__WEBPACK_IMPORTED_MODULE_3__.toast.POSITION.TOP_RIGHT,
+        autoClose: 3000
+      });
     })["catch"](function (error) {});
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "write-review-header",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
         children: "Write a Review"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
       onSubmit: onSubmit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "write-review-content",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "stars",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
             children: "Add a title"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "text",
             name: "review-title",
             id: "review-title",
             value: reviewTitle,
             onChange: onReviewTitleChange,
             maxLength: "120"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
             children: "Details please! Your review helps other shoppers."
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
             rows: "4",
             value: reviewContent,
             onChange: onReviewContentChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
             children: "Select a rating star"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             className: "star star-5",
             id: "star-5",
             type: "radio",
             name: "star",
             value: "5",
             onChange: onReviewRatingChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
             className: "star star-5",
             htmlFor: "star-5"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             className: "star star-4",
             id: "star-4",
             type: "radio",
             name: "star",
             value: "4",
             onChange: onReviewRatingChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
             className: "star star-4",
             htmlFor: "star-4"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             className: "star star-3",
             id: "star-3",
             type: "radio",
             name: "star",
             value: "3",
             onChange: onReviewRatingChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
             className: "star star-3",
             htmlFor: "star-3"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             className: "star star-2",
             id: "star-2",
             type: "radio",
             name: "star",
             value: "2",
             onChange: onReviewRatingChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
             className: "star star-2",
             htmlFor: "star-2"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             className: "star star-1",
             id: "star-1",
             type: "radio",
             name: "star",
             value: "1",
             onChange: onReviewRatingChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
             className: "star star-1",
             htmlFor: "star-1"
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "write-review-footer",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           type: "submit",
           className: "btn btn-secondary",
           style: {
@@ -3757,8 +3781,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Pagination/Pagination */ "./resources/js/components/Pagination/Pagination.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3784,8 +3806,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function ReviewView(props) {
-  var _jsxs2, _jsxs3, _jsxs4, _jsxs5, _jsxs6, _jsxs7;
-
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     filterBy: "total",
     filterValue: '1',
@@ -3883,6 +3903,15 @@ function ReviewView(props) {
     fetchData();
   }, []);
 
+  var localeDateString = function localeDateString(date) {
+    var d = new Date(date);
+    return d.toLocaleDateString(undefined, {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  };
+
   var reviewsRender = function reviewsRender() {
     var res = [];
     reviews[0] ? reviews[0].review_title ? reviews.map(function (item, index) {
@@ -3898,7 +3927,7 @@ function ReviewView(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
           children: item.review_details
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-          children: item.review_date
+          children: localeDateString(item.review_date)
         })]
       }, index));
     }) : [] : [];
@@ -3916,85 +3945,91 @@ function ReviewView(props) {
           display: "inline",
           overflowWrap: "anywhere"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs2 = {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "dropdown-item",
           style: {
-            cursor: "pointer"
-          }
-        }, _defineProperty(_jsxs2, "style", {
-          display: "inline"
-        }), _defineProperty(_jsxs2, "onClick", function onClick(e) {
-          setFilter({
-            filterBy: "total",
-            filterValue: '1',
-            filterName: 'Total'
-          });
-        }), _defineProperty(_jsxs2, "children", ["Total (", header[0] ? header[0].total : 0, ")"]), _jsxs2)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs3 = {
+            cursor: "pointer",
+            display: "inline"
+          },
+          onClick: function onClick(e) {
+            setFilter({
+              filterBy: "total",
+              filterValue: '1',
+              filterName: 'Total'
+            });
+          },
+          children: ["Total (", header[0] ? header[0].total : 0, ")"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "dropdown-item",
           style: {
-            cursor: "pointer"
-          }
-        }, _defineProperty(_jsxs3, "style", {
-          display: "inline"
-        }), _defineProperty(_jsxs3, "onClick", function onClick(e) {
-          setFilter({
-            filterBy: "reviews.rating_start",
-            filterValue: '5',
-            filterName: '5 Star'
-          });
-        }), _defineProperty(_jsxs3, "children", ["5 star (", header[0] ? header[0].star5 : 0, ")"]), _jsxs3)), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs4 = {
+            cursor: "pointer",
+            display: "inline"
+          },
+          onClick: function onClick(e) {
+            setFilter({
+              filterBy: "reviews.rating_start",
+              filterValue: '5',
+              filterName: '5 Star'
+            });
+          },
+          children: ["5 star (", header[0] ? header[0].star5 : 0, ")"]
+        }), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "dropdown-item",
           style: {
-            cursor: "pointer"
-          }
-        }, _defineProperty(_jsxs4, "style", {
-          display: "inline"
-        }), _defineProperty(_jsxs4, "onClick", function onClick(e) {
-          setFilter({
-            filterBy: "reviews.rating_start",
-            filterValue: '4',
-            filterName: '4 Star'
-          });
-        }), _defineProperty(_jsxs4, "children", ["4 star (", header[0] ? header[0].star4 : 0, ")"]), _jsxs4)), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs5 = {
+            cursor: "pointer",
+            display: "inline"
+          },
+          onClick: function onClick(e) {
+            setFilter({
+              filterBy: "reviews.rating_start",
+              filterValue: '4',
+              filterName: '4 Star'
+            });
+          },
+          children: ["4 star (", header[0] ? header[0].star4 : 0, ")"]
+        }), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "dropdown-item",
           style: {
-            cursor: "pointer"
-          }
-        }, _defineProperty(_jsxs5, "style", {
-          display: "inline"
-        }), _defineProperty(_jsxs5, "onClick", function onClick(e) {
-          setFilter({
-            filterBy: "reviews.rating_start",
-            filterValue: '3',
-            filterName: '3 Star'
-          });
-        }), _defineProperty(_jsxs5, "children", ["3 star (", header[0] ? header[0].star3 : 0, ")"]), _jsxs5)), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs6 = {
+            cursor: "pointer",
+            display: "inline"
+          },
+          onClick: function onClick(e) {
+            setFilter({
+              filterBy: "reviews.rating_start",
+              filterValue: '3',
+              filterName: '3 Star'
+            });
+          },
+          children: ["3 star (", header[0] ? header[0].star3 : 0, ")"]
+        }), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "dropdown-item",
           style: {
-            cursor: "pointer"
-          }
-        }, _defineProperty(_jsxs6, "style", {
-          display: "inline"
-        }), _defineProperty(_jsxs6, "onClick", function onClick(e) {
-          setFilter({
-            filterBy: "reviews.rating_start",
-            filterValue: '2',
-            filterName: '2 Star'
-          });
-        }), _defineProperty(_jsxs6, "children", ["2 star (", header[0] ? header[0].star2 : 0, ")"]), _jsxs6)), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", (_jsxs7 = {
+            cursor: "pointer",
+            display: "inline"
+          },
+          onClick: function onClick(e) {
+            setFilter({
+              filterBy: "reviews.rating_start",
+              filterValue: '2',
+              filterName: '2 Star'
+            });
+          },
+          children: ["2 star (", header[0] ? header[0].star2 : 0, ")"]
+        }), "|", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "dropdown-item",
           style: {
-            cursor: "pointer"
-          }
-        }, _defineProperty(_jsxs7, "style", {
-          display: "inline"
-        }), _defineProperty(_jsxs7, "onClick", function onClick(e) {
-          setFilter({
-            filterBy: "reviews.rating_start",
-            filterValue: '1',
-            filterName: '1 Star'
-          });
-        }), _defineProperty(_jsxs7, "children", ["1 star (", header[0] ? header[0].star1 : 0, ")"]), _jsxs7))]
+            cursor: "pointer",
+            display: "inline"
+          },
+          onClick: function onClick(e) {
+            setFilter({
+              filterBy: "reviews.rating_start",
+              filterValue: '1',
+              filterName: '1 Star'
+            });
+          },
+          children: ["1 star (", header[0] ? header[0].star1 : 0, ")"]
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "row",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -5287,7 +5322,6 @@ function Product(props) {
     });
 
     if (exist) {
-      console.log('update lại item cũ');
       setCartItems(cartItems.map(function (x) {
         return x = x.id === product.id ? _objectSpread(_objectSpread({}, product), {}, {
           qty: x.qty + number > 8 ? 8 : x.qty + number,
@@ -5295,7 +5329,6 @@ function Product(props) {
         }) : x;
       }));
     } else {
-      console.log('item mới');
       setCartItems([].concat(_toConsumableArray(cartItems), [_objectSpread(_objectSpread({}, product), {}, {
         qty: number,
         url: url
