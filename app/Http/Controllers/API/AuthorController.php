@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AuthorController extends Controller
 {
     public function listAuthor(){
-        $authors=Author::all();
+        $authors=Author::orderBy('author_name')->get();
         return response()->json($authors);
     }
 }

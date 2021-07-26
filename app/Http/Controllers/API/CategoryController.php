@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function listCategory(){
-        $categories=Category::all();
+        $categories=Category::orderBy('category_name')->get();
         return response()->json($categories);
     }
 }

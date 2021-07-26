@@ -10,7 +10,7 @@ export default function Shop() {
     const [books, setBooks] = useState([]);
     const [categories, setCategories] = useState([]);
     const [authors, setAuthors] = useState([]);
-    const [filter, setFilter] = useState({ filterBy: "categories.id", filterValue: 1, filterName: '' });
+    const [filter, setFilter] = useState({ filterBy: "categories.id", filterValue: 2, filterName: '' });
     const [sort, setSort] = useState("sale");
     const [per, setPer] = useState(20);
     const [page, setPage] = useState(1);
@@ -41,7 +41,7 @@ export default function Shop() {
     useEffect(() => {
         categories ?
             (categories[0] ?
-                setFilter({ filterBy: "categories.id", filterValue: 1, filterName: categories[0].category_name })
+                setFilter({ filterBy: "categories.id", filterValue: 2, filterName: categories[0].category_name })
                 : '')
             : '';
     }, [categories])

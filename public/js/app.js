@@ -5478,7 +5478,7 @@ function Shop() {
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     filterBy: "categories.id",
-    filterValue: 1,
+    filterValue: 2,
     filterName: ''
   }),
       _useState10 = _slicedToArray(_useState9, 2),
@@ -5546,7 +5546,7 @@ function Shop() {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     categories ? categories[0] ? setFilter({
       filterBy: "categories.id",
-      filterValue: 1,
+      filterValue: 2,
       filterName: categories[0].category_name
     }) : '' : '';
   }, [categories]);
